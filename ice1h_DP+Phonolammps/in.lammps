@@ -1,0 +1,31 @@
+# bulk water
+units           metal
+boundary        p p p
+atom_style      full
+atom_modify     map yes
+
+#neighbor        2.0 bin
+#neigh_modify    every 10 delay 0 check no
+
+#plugin load /home/yifanl/.conda/envs/dpdev3/lib/libdeepmd_lmp.so
+
+read_data       ./data.ice1h_primitive_OH
+
+mass 		1 17.9991610
+mass		2 1.00794
+
+pair_style deepmd /scratch/gpfs/yifanl/Work/pimd/h2o/scan_natcomm/compress.pb
+pair_coeff      * *	
+
+
+#fix             1 all pimd method nmpimd fmmode physical ensemble npt integrator obabo thermostat PILE_L 975481 temp 300.0 tau 1.0 scale 1.0 map yes barostat BZP iso press 1.0 taup 1.0
+#
+#dump            1 all custom 100 ${ibead}.xyz id type x y z vx vy vz ix iy iz fx fy fz
+#dump_modify     1 append yes sort id
+#
+#timestep        0.0005
+#thermo_style    custom step f_1[1*9] vol
+#thermo          100
+#thermo_modify format line "%d %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e %.12e"
+#
+#run 10000
