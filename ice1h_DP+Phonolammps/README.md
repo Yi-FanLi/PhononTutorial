@@ -1,1 +1,1 @@
-Phonon dispersion of ice $I$h with Deep Potential and Phonolammps
+# Phonon dispersion of ice Ih with Deep Potential and Phonolammps
